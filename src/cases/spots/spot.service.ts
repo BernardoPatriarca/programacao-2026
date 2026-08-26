@@ -1,27 +1,27 @@
 import { Repository } from "typeorm";
-import { Category } from "./category.entity";
+import { Spot } from "./spot.entity";
 import { Injectable, NotFoundException } from "@nestjs/common";
-import { CreateCategoryDTO } from "./dto/create-category";
-import { UpdateCategoryDTO } from "./dto/update-category";
+import { CreateSpotDTO } from "./dto/create-spot";
+import { UpdateSpotDTO } from "./dto/update-spot";
 import { InjectRepository } from "@nestjs/typeorm";
 
 @Injectable()
-export class CategoryService {
+export class SpotService {
 
     constructor(
-        @InjectRepository(Category) 
-        private readonly categoryRepository: Repository<Category>
+        @InjectRepository(Spot) 
+        private readonly categoryRepository: Repository<Spot>
     ) {
 
     }
 
-    findAll(): Promise<Category[]> {
+    findAll(): Promise<Spot[]> {
         return this.categoryRepository.find({
             order: { name: 'ASC' }
         });
     }
 
-    async findOne(id: string): Promise<Category> {
+    async findOne(id: string): Promise<Spot> {
         const category = await this.categoryRepository.findOneBy({ id });
         
         if (!category) {
@@ -31,7 +31,7 @@ export class CategoryService {
         return category;
     }
 
-    create(dto: CreateCategoryDTO): Promise<Category> {
+    create(dto: CreateSpotDTO): Promise<Spot> {
         const category = this.categoryRepository.create({ 
             ...dto,
             name: dto.name,
@@ -41,7 +41,7 @@ export class CategoryService {
          return this.categoryRepository.save(category);
     }
 
-    async update(id: string, dto: UpdateCategoryDTO): Promise<Category> {
+    async update(id: string, dto: UpdateSpotDTO): Promise<Spot> {
         const category = await this.findOne(id);
 
         if (dto.name !== undefined) {
