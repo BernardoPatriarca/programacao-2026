@@ -25,7 +25,7 @@ export class SpotService {
         const category = await this.categoryRepository.findOneBy({ id });
         
         if (!category) {
-            throw new NotFoundException('Categoria não encontrada!');
+            throw new NotFoundException('Mesa não encontrada!');
         }
 
         return category;
