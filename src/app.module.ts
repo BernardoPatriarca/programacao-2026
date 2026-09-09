@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CategoryModule } from './cases/categories/category.module';
+import { ProductModule } from './cases/products/product.module';
 
 @Module({
   imports: [
@@ -25,12 +27,15 @@ import { TypeOrmModule } from '@nestjs/typeorm';
           schema: databaseSCHEMA,
           autoLoadEntities: true,
           synchronize: true,
+          ssl: {
+            rejectUnauthorized: false,
+          },
         }
 
       }
-    })
+    }),
+    CategoryModule,
+    ProductModule,
   ],
-  controllers: [],
-  providers: [],
 })
 export class AppModule { }

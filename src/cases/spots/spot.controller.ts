@@ -1,10 +1,10 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseUUIDPipe, Patch, Post } from "@nestjs/common";
 import { SpotService } from "./spot.service";
 import { Spot } from "./spot.entity";
-import { CreateSpotDTO } from "./dto/create-spot";
-import { UpdateSpotDTO } from "./dto/update-spot";
+import { CreateSpotDTO } from "./dto/create-spot-dto";
+import { UpdateSpotDTO } from "./dto/update-spot-dto";
 
-@Controller('categories')
+@Controller('spots')
 export class SpotController {
 
     constructor(
