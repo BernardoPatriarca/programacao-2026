@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Category } from "../categories/category.entity";
 
 @Entity('product')
@@ -18,10 +18,10 @@ export class Product {
     @Column({ type: 'numeric', precision: 10, scale: 2 })
     price: number;
 
-    @Column({ type: 'text', nullable: false })
+    @Column({ type: 'text', nullable: true })
     picture: string;
     
-    @ManyToMany(() => Category, { nullable: true })
+    @ManyToOne(() => Category, { nullable: true })
     @JoinColumn({ name: 'category_id' })
     category?: Category;
 

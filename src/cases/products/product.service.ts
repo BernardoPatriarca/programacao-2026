@@ -1,8 +1,8 @@
 import { Repository } from "typeorm";
 import { Product } from "./product.entity";
 import { Injectable, NotFoundException } from "@nestjs/common";
-import { CreateProductDTO } from "./dto/create-product-dto";
-import { UpdateProductDTO } from "./dto/update-product-dto";
+import { CreateProductDTO } from "./dto/create-product.dto";
+import { UpdateProductDTO } from "./dto/update-product.dto";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Category } from "../categories/category.entity";
 
@@ -33,7 +33,7 @@ export class ProductService {
         });
         
         if (!product) {
-            throw new NotFoundException('Produto não encontrada!');
+            throw new NotFoundException('Produto não encontrado.');
         }
 
         return product;
@@ -94,7 +94,7 @@ export class ProductService {
         const category = await this.categoryRepository.findOneBy({ id, active: true });
 
         if (!category) {
-            throw new NotFoundException("Nenhuma categoria ativa foi encontrada!");
+            throw new NotFoundException('Nenhuma categoria ativa foi encontrada.');
         }
         
         return category

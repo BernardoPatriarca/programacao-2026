@@ -3,6 +3,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CategoryModule } from './cases/categories/category.module';
 import { ProductModule } from './cases/products/product.module';
+import { SpotModule } from './cases/spots/spot.module';
+import { GuestCheckModule } from './cases/guest-checks/guest-check.module';
+import { OrderModule } from './cases/orders/order.module';
 
 @Module({
   imports: [
@@ -14,11 +17,11 @@ import { ProductModule } from './cases/products/product.module';
         const databaseSCHEMA = ConfigService.get<string>('DATABASE_SCHEMA');
 
         if (!databaseURL) {
-          throw new Error("A variável de ambiente DATABASE_URL não foi encontrada!")
+          throw new Error("A variável de ambiente DATABASE_URL não foi encontrada.")
         }
 
         if (!databaseSCHEMA) {
-          throw new Error("A variável de ambiente DATABASE_SCHEMA não foi encontrada!")
+          throw new Error("A variável de ambiente DATABASE_SCHEMA não foi encontrada.")
         }
 
         return {
@@ -36,6 +39,9 @@ import { ProductModule } from './cases/products/product.module';
     }),
     CategoryModule,
     ProductModule,
+    SpotModule,
+    GuestCheckModule,
+    OrderModule
   ],
 })
 export class AppModule { }

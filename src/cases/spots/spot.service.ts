@@ -1,8 +1,8 @@
 import { Repository } from "typeorm";
 import { Spot } from "./spot.entity";
 import { Injectable, NotFoundException } from "@nestjs/common";
-import { CreateSpotDTO } from "./dto/create-spot-dto";
-import { UpdateSpotDTO } from "./dto/update-spot-dto";
+import { CreateSpotDTO } from "./dto/create-spot.dto";
+import { UpdateSpotDTO } from "./dto/update-spot.dto";
 import { InjectRepository } from "@nestjs/typeorm";
 
 @Injectable()
@@ -25,7 +25,7 @@ export class SpotService {
         const spot = await this.spotRepository.findOneBy({ id });
         
         if (!spot) {
-            throw new NotFoundException('Mesa não encontrada!');
+            throw new NotFoundException('Mesa não encontrada.');
         }
 
         return spot;

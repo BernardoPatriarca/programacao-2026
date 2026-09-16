@@ -1,8 +1,8 @@
 import { Repository } from "typeorm";
 import { Category } from "./category.entity";
 import { Injectable, NotFoundException } from "@nestjs/common";
-import { CreateCategoryDTO } from "./dto/create-category-dto";
-import { UpdateCategoryDTO } from "./dto/update-category-dto";
+import { CreateCategoryDTO } from "./dto/create-category.dto";
+import { UpdateCategoryDTO } from "./dto/update-category.dto";
 import { InjectRepository } from "@nestjs/typeorm";
 
 @Injectable()
@@ -25,7 +25,7 @@ export class CategoryService {
         const category = await this.categoryRepository.findOneBy({ id });
         
         if (!category) {
-            throw new NotFoundException('Categoria não encontrada!');
+            throw new NotFoundException('Categoria não encontrada.');
         }
 
         return category;
